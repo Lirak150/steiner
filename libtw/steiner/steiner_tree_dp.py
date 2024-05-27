@@ -230,6 +230,6 @@ class SteinerTreeDP:
                         total_cost = min(total_cost, partition_table.get(new_connectivity))
                     partition_table[new_connectivity] = total_cost
 
-                solution_table[unused_vertices] = partition_table
+            solution_table[unused_vertices] = partition_table
 
         return solution_table

@@ -43,8 +43,8 @@ class Connectivity:
         for block in self.partition:
             new_block = set()
             new_block.update(block)
-            if vertex in block:
-                if len(new_block) > 1 or len(new_block) == 1 and used_all_vertices:
+            if vertex in new_block:
+                if len(new_block) > 1 or len(self.partition) == 1 and used_all_vertices:
                     new_block.remove(vertex)
                     if len(new_block) != 0:
                         result.partition.add(frozenset(new_block))
