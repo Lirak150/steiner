@@ -2,6 +2,6 @@
 
 # Как пользоваться?
 
-Запустить скрипт single_experiment.py, указав с CLI параметре путь к файлу в формате SteinLib.
+Запустить скрипт single_experiment.py, указав в CLI параметре путь к файлу в формате SteinLib.
 
 ```python3 single_experiment.py <путь к файлу>```
