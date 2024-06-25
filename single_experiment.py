@@ -1,5 +1,5 @@
 import sys
-
+import time
 from tests.parser import parse
 from libtw.steiner.steiner_tree_dp import SteinerTreeDP
 from libtw.tree_decomposition.perm_to_tree_decomp import PermutationToTreeDecomp
@@ -18,15 +18,14 @@ if __name__ == "__main__":
 
     tw = 0
     for i in range(td.get_number_of_vertex()):
-        if len(td.get_vertex(0).data.vertices) > tw:
-            tw = len(td.get_vertex(0).data.vertices)
+        tw = max(tw, len(td.get_vertex(i).data.vertices))
 
     v = g.get_number_of_vertex()
     e = g.get_number_of_edges()
 
     terminals = steinlib_inst.set_terminals
     t = len(terminals)
-
+    print(f"tw: {tw - 1} |V|: {v} |E|: {e} |T|: {t}")
     terminal = list(terminals)[0]
     weights = steinlib_inst.edges_weights
 
@@ -35,8 +34,9 @@ if __name__ == "__main__":
     ntd.run()
 
     nice_decomp = ntd.nice_decomposition
-
+    start = time.time()
     steiner_dp = SteinerTreeDP()
     steiner_dp.set_input(nice_decomp, terminals, weights)
     steiner_dp.run()
-    print(steiner_dp.solution)
+    print(f"answer: {steiner_dp.solution}")
+    print(f"time (in seconds): {time.time() - start:.2f}")
